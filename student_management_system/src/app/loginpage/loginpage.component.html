@@ -1,0 +1,42 @@
+     <body>
+      <section class="vh-80" style="background-color: #07450cfa;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-5 d-none d-md-block">
+  <img src="https://i.pinimg.com/564x/50/cd/4d/50cd4dc3268b1bfd219156e5f0435266.jpg"
+                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                  </div>
+                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+                      <div class="card-header"><h3><b class="s1">Login Details</b></h3></div> <br> <br>
+                        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                        <h5><b><label>User Id:</label></b><br></h5>
+                        <input type="text" placeholder="Enter Id" formControlName="user">
+                        <span style="color: red;" *ngIf="user && user.invalid && user.touched">
+                        <br>Invalid input field</span>
+                        <br> <br>
+                        <h5><b><label>Password:</label></b><br></h5>
+                        <input type="password" placeholder="Enter Password" formControlName="password">
+                          <br><span style="color: red;" *ngIf="password && password.invalid && password.touched">
+                          <br>Invalid input field</span>
+                          <br>
+                          <div class="pt-1 mb-4">
+                        <button [disabled]="loginForm.invalid" class="btn-lg btn-block"><b class="s">Submit</b></button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </body>
+
+
+
+  

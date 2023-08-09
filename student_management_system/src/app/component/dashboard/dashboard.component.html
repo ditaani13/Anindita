@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<body class="dash-body">
+<!-- <img class="image" src="student_management_system\src\assets\hp1.jpg">  -->
+<div class="container-fluid">
+  <!-- navbar -->
+    <nav class="navbar" style="background-color: #1d1e1f;">
+        <div class="container-fluid">
+            <div>
+            <a class="navbar-brand">
+                <img src="assets/hoglogo.png" width="83" height="32" class="d-inline-block align-text-top">
+              Welcome to Hogwarts School of Witchcraft and Wizardry
+            </a>
+            <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#addStudent" type="submit">Add Student</button>
+            </div> 
+            <div>
+            <button class=logout-button (click)="clickLogout()">
+              <i class="fas fa-sign-out-alt"></i>LogOut</button>
+           </div>
+
+          <!-- <div>
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addStudent" type="submit">Add Student</button>
+          </div> -->
+        </div>
+      </nav>  
+      <br>
+     <br>
+</div>
+<!-- Table Creation -->
+<div class="container">
+<table id="table_decor" class="table table-primary table-striped">
+<!-- <table class="table table-hover"> -->
+  <thead>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">House Name</th>
+      <th scope="col">Family</th>
+      <th scope="col">Action</th>
+    </tr><br>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studentList">
+      <td>{{student.id}}</td>
+      <td>{{student.firstname}}</td>
+      <td>{{student.lastname}}</td>
+      <td>{{student.housename}}</td>
+      <td>{{student.family}}</td>
+      <td>
+    <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#editStudent" (click)="editStudent(student)"><b class="e">Edit</b></button>
+    <button type="button" class="btn btn-outline-danger" (click)="deleteStudent(student)"><b class="d">Delete</b></button>
+      </td>
+   </tr>
+  </tbody>
+</table>
+</div>
+
+ <!-- student details  -->
+ <!-- <div>
+    <h2>View Student Deatils </h2>
+    <div id="getStudentDetails" > 
+
+      <div *ngFor="let student of studentList">
+      <div>
+        <label><b>Student ID :</b></label>{{student.id}}
+    </div>
+    <div>
+        <label><b>First Name :</b></label>{{student.firstname}}
+    </div>
+    <div>
+        <label><b>Last Name :</b></label>{{student.lastname}}
+    </div>
+    <div>
+        <label><b>House Name :</b></label>{{student.housename}}
+    </div>
+    <div>
+        <label><b>Family :</b></label>{{student.family}}
+    </div>
+      </div>
+
+  </div>
+  </div>  -->
+ <!-- <div ="getStudentDetails" *ngFor="let student of studentList>   -->
+   
+<!-- Add Student Modal (id is different) --> 
+<div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <a class="img">
+      </a>
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Student</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">     
+        <form [formGroup]="studentDetail" (ngSubmit)="loginUser()">
+          <div class="mb-3">
+            <label class="form-label">Student ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="id && id.invalid && id.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="firstname && firstname.invalid && firstname.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="lastname && lastname.invalid && lastname.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">House Name</label>
+            <input type="test" formControlName="housename" class="form-control" id="housename" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="housename && housename.invalid && housename.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Family</label>
+            <input type="test" formControlName="family" class="form-control" id="family" aria-describedby="emailHelp">
+            <span style="color: red;" *ngIf="family && family.invalid && family.touched">
+              <br>Invalid input field</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="studentDetail.invalid" type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="addStudent()" >Add Student</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Update Student Modal -->
+<div class="modal fade" id="editStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Student Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- update form -->
+        <form [formGroup]="studentDetail">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Student ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">House Name</label>
+            <input type="test" formControlName="housename" class="form-control" id="housename" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Family</label>
+            <input type="test" formControlName="family" class="form-control" id="family" aria-describedby="emailHelp">
+          </div>     
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" (click)="updateStudent()" data-bs-dismiss="modal">Update</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</body>
+
+
+

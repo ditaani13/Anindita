@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+.dash-body{
+    /* background-color: rgb(79, 151, 210);  */
+    width: 100vw; 
+    height: 98vh; 
+    background-size:cover;
+    /* background-image: url(../src/assets/hogwarts-castle.jpg);  */
+    /* background-image: url(../src/assets/h5.jpg); */
+    background-image: url(../src/assets/hl12.jpg); 
+    
+} 

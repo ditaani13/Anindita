@@ -1,0 +1,139 @@
+<div class="container-fluid">
+    <nav class=" -expand-lg bg-light">
+        <div class="container-fluid">
+            <div>
+            <!-- <a class="-brand" href="#">
+                <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Hogwarts School of Whichcraft
+              </a> -->
+            </div>
+            
+          <!-- <a class="-brand" href="#"></a>
+          <button class="-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#SupportedContent" aria-controls="SupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="-toggler-icon"></span>
+          </button> -->
+
+          <div class="collapse -collapse" id="SupportedContent">
+            <!-- <ul class="-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+            </ul>            -->
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addStudent" type="submit">Add Student</button>
+          </div>
+        </div>
+      </nav>
+
+<!-- Table Creation -->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">House Name</th>
+      <th scope="col">Family</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <!-- <th scope="row">1</th> -->
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>
+      <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#editStudent">Edit</button>
+      <button type="button" class="btn btn-outline-danger" >Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Add Student Modal -->
+<div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add new Student</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">     
+        <form [formGroup]="studentDetail">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Student ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">House Name</label>
+            <input type="test" formControlName="housename" class="form-control" id="housename" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Family</label>
+            <input type="test" formControlName="family" class="form-control" id="family" aria-describedby="emailHelp">
+          </div>
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="addStudent()" >Add Student</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Update Student Modal -->
+<div class="modal fade" id="editStudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Student Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- update form -->
+        <form [formGroup]="studentDetail">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Student ID</label>
+            <input type="number" formControlName="id" class="form-control" id="id" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" formControlName="firstname" class="form-control" id="firstname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+            <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">House Name</label>
+            <input type="test" formControlName="housename" class="form-control" id="housename" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Family</label>
+            <input type="test" formControlName="family" class="form-control" id="family" aria-describedby="emailHelp">
+          </div>     
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="updateStudent()" >Update Student</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
